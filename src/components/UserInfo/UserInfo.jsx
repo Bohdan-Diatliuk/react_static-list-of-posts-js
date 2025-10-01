@@ -2,7 +2,7 @@ import './UserInfo.scss';
 
 export const UserInfo = ({ user }) => {
   if (!user) {
-    return <span className="UserInfo">Uknown</span>;
+    return <span className="UserInfo">Unknown</span>;
   }
 
   return (

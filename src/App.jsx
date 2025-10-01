@@ -6,7 +6,13 @@ import usersFromServer from './api/users.json';
 import { PostList } from './components/PostList/PostList';
 
 function getUserById(userId) {
-  return usersFromServer.find(user => user.id === userId) || null;
+  return (
+    usersFromServer.find(user => user.id === userId) || {
+      id: userId,
+      name: 'Unknown User',
+      email: 'unknown@example.com',
+    }
+  );
 }
 
 function getCommentByPostId(postId) {
@@ -15,7 +21,7 @@ function getCommentByPostId(postId) {
 
 const posts = postsFromServer.map(post => ({
   ...post,
-  user: getUserById(post.userId) || null,
+  user: getUserById(post.userId),
   comments: getCommentByPostId(post.id) || [],
 }));
 
